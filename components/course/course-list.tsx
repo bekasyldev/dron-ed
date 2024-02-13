@@ -15,7 +15,7 @@ const items = [
     id: "1",
     title: "Introduction to Drones",
     chapters: ["History of Drones", "Types of Drones", "Drone Components"],
-    imageUrl: "intro-to-drones.jpg",
+    imageUrl: "dron.jpg",
     price: 19.99,
     progress: 25,
   },
@@ -23,7 +23,7 @@ const items = [
     id: "2",
     title: "Drone Photography Basics",
     chapters: ["Camera Settings", "Composition Techniques", "Editing Tips"],
-    imageUrl: "drone-photography.jpg",
+    imageUrl: "drone.jpg",
     price: 29.99,
     progress: null,
   },
@@ -31,7 +31,7 @@ const items = [
     id: "3",
     title: "Advanced Drone Maneuvers",
     chapters: ["Precision Flying", "Acrobatics", "Obstacle Avoidance"],
-    imageUrl: "advanced-drones.jpg",
+    imageUrl: "dron-env.jpeg",
     price: 39.99,
     progress: 50,
   },
@@ -46,7 +46,7 @@ export const CoursesList = async () => {
             key={item.id}
             id={item.id}
             title={item.title}
-            imageUrl={`/assets/${item.imageUrl}`}
+            imageUrl={`${item.imageUrl}`}
             chaptersLength={item.chapters.length}
             price={item.price!}
             progress={item.progress}
