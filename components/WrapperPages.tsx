@@ -7,7 +7,7 @@ interface WrapperPagesProps {
 }
 
 const WrapperPages = ({ children, className }: WrapperPagesProps) => {
-  return <div className={cn("px-20 py-10", className)}>{children}</div>;
+  return <div className={cn("px-20", className)}>{children}</div>;
 };
 
 export default WrapperPages;

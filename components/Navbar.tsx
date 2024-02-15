@@ -6,7 +6,7 @@ import { SignInButton, UserButton, auth } from "@clerk/nextjs";
 const Navbar = () => {
   const { userId } = auth();
   return (
-    <nav className="w-full py-4 px-20">
+    <nav className="w-full py-4 px-20 mb-10">
       <div className="h-full flex flex-row items-center justify-between">
         <div className="">
           <Link href={"/"}>

@@ -12,14 +12,6 @@ type Items = {
 // test cases
 const items = [
   {
-    id: "1",
-    title: "Introduction to Drones",
-    chapters: ["History of Drones", "Types of Drones", "Drone Components"],
-    imageUrl: "drone.jpg",
-    price: 19.99,
-    progress: 25,
-  },
-  {
     id: "2",
     title: "Drone Photography Basics",
     chapters: ["Camera Settings", "Composition Techniques", "Editing Tips"],
