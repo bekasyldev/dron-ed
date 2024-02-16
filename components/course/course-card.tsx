@@ -27,7 +27,7 @@ export const CourseCard = ({
             fill
             className="object-cover"
             alt={title}
-            src={`/assets/${imageUrl}`}
+            src={`/assets/dron-env.jpeg`}
           />
         </div>
         <div className="flex flex-col pt-2">
@@ -40,7 +40,6 @@ export const CourseCard = ({
               <span>
                 {chaptersLength} {chaptersLength === 1 ? "Chapter" : "Chapters"}
               </span>
-              Chapters
             </div>
           </div>
           {progress !== null ? (

@@ -1,32 +1,21 @@
 import { CourseProgress } from "@/components/course/course-progress";
 import { CourseSidebarItem } from "./course-sidebar-item";
+import { Chapter, Course, UserProgress } from "@prisma/client";
 
-const sampleChapters = [
-  {
-    id: "oijsadofij",
-    title: "Introduction to Programming",
-    userProgress: [{ isCompleted: true }],
-    isFree: true,
-  },
-  {
-    id: "oijsadofij",
-    title: "Variables and Data Types",
-    userProgress: [],
-    isFree: true,
-  },
-  {
-    id: "oijsadofij",
-    title: "Conditional Statements",
-    userProgress: [{ isCompleted: true }],
-    isFree: true,
-  },
-];
+interface CourseSidebarProps {
+  course: Course & {
+    chapters: (Chapter & {
+      userProgress: UserProgress[] | null;
+    })[];
+  };
+  // progress count
+}
 
-export const CourseSidebar = () => {
+export const CourseSidebar = async ({ course }: CourseSidebarProps) => {
   return (
     <div className="h-full border-r flex flex-col overflow-y-auto shadow-sm">
       <div className="p-8 flex flex-col border-b">
-        <h1 className="font-semibold">Course Titile</h1>
+        <h1 className="font-semibold text-primary">{course.title}</h1>
         {/* purchase */}
         {true && (
           <div className="mt-10">
@@ -35,15 +24,17 @@ export const CourseSidebar = () => {
         )}
       </div>
       <div className="flex flex-col w-full">
-        {sampleChapters.map((chapter) => (
+        <h3 className="font-semibold text-primary/80 pl-8 p-4 border-b">
+          Content
+        </h3>
+        {course.chapters.map((chapter) => (
           <CourseSidebarItem
             key={chapter.id}
             id={chapter.id}
             label={chapter.title}
             isCompleted={!!chapter.userProgress?.[0]?.isCompleted}
-            courseId={"oijsadofij"}
-            // !chapter
-            isLocked={!chapter.isFree && true}
+            courseId={course.id}
+            isLocked={!chapter.isFree && !chapter}
           />
         ))}
       </div>

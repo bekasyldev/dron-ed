@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import WrapperPages from "@/components/WrapperPages";
+import { auth } from "@clerk/nextjs";
 import React from "react";
 
 const ContactPage = () => {

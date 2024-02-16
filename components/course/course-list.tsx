@@ -1,35 +1,22 @@
 import { CourseCard } from "@/components/course/course-card";
-
-type Items = {
-  id: string;
-  title: string;
-  chapters: string[];
-  imageUrl: string;
-  price: number;
-  progress: number | null;
-};
-
-// test cases
-const items = [
-  {
-    id: "2",
-    title: "Drone Photography Basics",
-    chapters: ["Camera Settings", "Composition Techniques", "Editing Tips"],
-    imageUrl: "drone.jpg",
-    price: 29.99,
-    progress: null,
-  },
-  {
-    id: "3",
-    title: "Advanced Drone Maneuvers",
-    chapters: ["Precision Flying", "Acrobatics", "Obstacle Avoidance"],
-    imageUrl: "drone-env.jpeg",
-    price: 39.99,
-    progress: 50,
-  },
-];
+import { db } from "@/lib/db";
+import { auth } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
 export const CoursesList = async () => {
+  const { userId } = auth();
+  if (!userId) {
+    redirect("/");
+  }
+  const items = await db.course.findMany({
+    where: {
+      isPublished: true,
+      userId,
+    },
+    include: {
+      chapters: true,
+    },
+  });
   return (
     <div>
       <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4">
@@ -41,7 +28,7 @@ export const CoursesList = async () => {
             imageUrl={`${item.imageUrl}`}
             chaptersLength={item.chapters.length}
             price={item.price!}
-            progress={item.progress}
+            progress={20}
           />
         ))}
       </div>
